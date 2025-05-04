@@ -1,11 +1,37 @@
+import booksData from "../data/books";
+
 function Home() {
   return (
     <div>
       Home
       <div className="mainContainer">
         <main>
-          <div className="mainContainer">
-            <h2>COMPLETE COMIC COLLECTION</h2>
+          <h2>COMPLETE COMIC COLLECTION</h2>
+          {booksData.map((book) => (
+            <div key={book._id}>
+              <img
+                className="homeComicCard"
+                src={`images/${book.imageUrl}`}
+                alt={`Cover of ${book.title}`}
+              />
+              <p>
+                <em>{book.title}</em>
+              </p>
+              <a className="detailsLink" href="#">
+                <p>Details</p>
+              </a>
+            </div>
+          ))}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+export default Home;
+
+{
+  /*
             <p>
               <a href="#">
                 <img
@@ -198,11 +224,5 @@ function Home() {
               </a>
             </p>
             <button className="buttonGold">DISPLAY MORE</button>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+            */
 }
-
-export default Home;
