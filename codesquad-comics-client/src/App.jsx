@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import "./App.css";
@@ -13,15 +13,21 @@ import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 
 function App() {
+
+  const [user, setUser] = useState(() =>{
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : {};
+
+  })
   return (
     <div>
-      <Header />
+      {/* <Header user={user} setUser = {setUser} />
       <About />
       <Admin />
       <Create />
-      <Home/>
-      <Login />
-      <Signup />
+      <Home/> */}
+      <Login user={user} setUser={setUser}/>
+      <Signup user={user} setUser = {setUser}/>
       <Update />
       <Footer />
     </div>

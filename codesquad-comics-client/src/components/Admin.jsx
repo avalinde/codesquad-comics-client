@@ -1,5 +1,12 @@
+import { useState, useEffect } from "react";
 import booksData from "../data/books";
 function Admin() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    setBooks(booksData);
+  }, []);
+
   return (
     <div>
       Admin
@@ -11,26 +18,24 @@ function Admin() {
             <div className="tableWrapper">
               <table>
                 <thead>
-                  <strong>
-                    <tr>
-                      <th>COMIC TITLE</th>
-                      <th>EDIT</th>
-                      <th>DELETE</th>
-                    </tr>
-                  </strong>
+                  <tr>
+                    <th>COMIC TITLE</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                  </tr>
                 </thead>
                 <tbody>
-                {booksData.map((book) =>
-                <tr key={book._id}>
-                  <td>{book.title}</td>
-                  <td>
-                      <button className="buttonBlue">EDIT</button>
-                    </td>
-                    <td>
-                      <button className="buttonGold">DELETE</button>
-                    </td>
-                </tr>
-                )}
+                  {booksData.map((book) => (
+                    <tr key={book._id}>
+                      <td>{book.title}</td>
+                      <td>
+                        <button className="buttonBlue">EDIT</button>
+                      </td>
+                      <td>
+                        <button className="buttonGold">DELETE</button>
+                      </td>
+                    </tr>
+                  ))}
 
                   {/* <tr>
                     <td>Batman: The Dark Knight Returns</td>

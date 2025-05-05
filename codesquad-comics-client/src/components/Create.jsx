@@ -1,11 +1,34 @@
+import { useState } from "react";
+import books from "../data/books";
+
 function Create() {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [genre, setGenre] = useState("");
+  const [pages, setPages] = useState("");
+  const [rating, setRating] = useState("");
+  const [synopsis, setSynopsis] = useState("");
+
+  const handleCreateSubmission = (e) => {
+    e.preventDefault();
+    console.log("Form Submission Completed.");
+    console.log("Title: ", title);
+    console.log("Author: ", author);
+    console.log("Publisher: ", publisher);
+    console.log("Genre: ", genre);
+    console.log("Number of Pages: ", pages);
+    console.log(`Rating: ${rating} stars`);
+    console.log("Synopsis: ", synopsis);
+  };
+
   return (
     <div>
       Create
       <div className="mainContainer">
         <main>
           <h1>Create New Comic</h1>
-          <form className="formF">
+          <form className="formF" onSubmit={handleCreateSubmission}>
             <p className="formP">
               <label className="formL" for="title">
                 Title:{" "}
@@ -17,6 +40,7 @@ function Create() {
                 id="title"
                 placeholder="Title"
                 required
+                onChange={(e) => setTitle(e.target.value)}
               />
             </p>
             <p className="formP">
@@ -30,13 +54,19 @@ function Create() {
                 id="author"
                 placeholder="Author"
                 required
+                onChange={(e) => setAuthor(e.target.value)}
               />
             </p>
             <p className="formP">
               <label className="formL" for="publisher">
                 Publisher:
               </label>
-              <select className="formI" name="publisher" id="publisher">
+              <select
+                className="formI"
+                name="publisher"
+                id="publisher"
+                onChange={(e) => setPublisher(e.target.value)}
+              >
                 <option value="pleasechoose" selected disabled>
                   --Select--
                 </option>
@@ -62,6 +92,8 @@ function Create() {
                 name="genre"
                 id="genre"
                 placeholder="Genre"
+                required
+                onChange={(e) => setGenre(e.target.value)}
               />
             </p>
 
@@ -75,6 +107,8 @@ function Create() {
                 name="pages"
                 id="page"
                 placeholder="Number of Pages"
+                required
+                onChange={(e) => setPages(e.target.value)}
               />
             </p>
 
@@ -88,18 +122,24 @@ function Create() {
                 name="rating"
                 id="rating"
                 required
+                onChange={(e) => setRating(e.target.value)}
               />
             </p>
             <p className="formP">
               <label className="formL" for="synopsis">
                 Synopsis:
               </label>
-              <textarea className="formI" name="synopsis" id="synopsis">
-                
-              </textarea>
+              <textarea
+                className="formI"
+                name="synopsis"
+                id="synopsis"
+                onChange={(e) => setSynopsis(e.target.value)}
+              ></textarea>
             </p>
             <p className="textCenter">
-              <button className="buttonGold">SUBMIT</button>
+              <button type="submit" className="buttonGold">
+                SUBMIT
+              </button>
             </p>
           </form>
         </main>

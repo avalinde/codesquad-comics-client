@@ -1,11 +1,41 @@
+import { useState, useEffect } from "react";
+import booksData from "../data/books";
+
 function Update() {
+  const id = "608f68ce-d099-41e5-9961-cdd673257eb2";
+  const [book, setBook] = useState([]);
+  useEffect(() => {
+    const foundBook = booksData.find((book) => book._id === id);
+    setBook(foundBook || {});
+  }, [id]);
+
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [genre, setGenre] = useState("");
+  const [pages, setPages] = useState("");
+  const [rating, setRating] = useState("");
+  const [synopsis, setSynopsis] = useState("");
+
+  const handleUpdateSubmission = (e) => {
+    e.preventDefault();
+    console.log("Form Submission Completed.");
+    console.log("Title: ", title);
+    console.log("Author: ", author);
+    console.log("Publisher: ", publisher);
+    console.log("Genre: ", genre);
+    console.log("Number of Pages: ", pages);
+    console.log(`Rating: ${rating} stars`);
+    console.log("Synopsis: ", synopsis);
+  };
+
   return (
     <div>
       Update
       <div className="main-container">
         <main>
           <h1>Update Comic</h1>
-          <form className="form-f">
+          <form className="form-f" onSubmit={handleUpdateSubmission}>
             <p className="form-p">
               <label className="form-l" for="title">
                 Title:{" "}
@@ -15,8 +45,8 @@ function Update() {
                 type="text"
                 name="title"
                 id="title"
-                value="title value stored in database"
                 required
+                onChange={(e) => setTitle(e.target.value)}
               />
             </p>
             <p className="form-p">
@@ -28,15 +58,20 @@ function Update() {
                 type="text"
                 name="author"
                 id="author"
-                value="author value stored in database"
                 required
+                onChange={(e) => setAuthor(e.target.value)}
               />
             </p>
             <p className="form-p">
               <label className="form-l" for="publisher">
                 Publisher:
               </label>
-              <select className="form-i" name="publisher" id="publisher">
+              <select
+                className="form-i"
+                name="publisher"
+                id="publisher"
+                onChange={(e) => setPublisher(e.target.value)}
+              >
                 <option value="boombox">BOOM! Box</option>
                 <option value="Harry N. Abrams">Harry N. Abrams</option>
                 <option value="Icon Books">Icon Books</option>
@@ -61,8 +96,8 @@ function Update() {
                 type="text"
                 name="genre"
                 id="genre"
-                value="genre value stored in database"
                 required
+                onChange={(e) => setGenre(e.target.value)}
               />
             </p>
 
@@ -75,7 +110,7 @@ function Update() {
                 type="number"
                 name="pages"
                 id="page"
-                value="255"
+                onChange={(e) => setPages(e.target.value)}
               />
             </p>
 
@@ -90,18 +125,25 @@ function Update() {
                 id="rating"
                 value="5"
                 required
+                onChange={(e) => setRating(e.target.value)}
               />
             </p>
             <p className="form-p">
               <label className="form-l" for="synopsis">
                 Synopsis:{" "}
               </label>
-              <textarea className="form-i" name="synopsis" id="synopsis">
-                synopsis value stored in database
+              <textarea
+                className="form-i"
+                name="synopsis"
+                id="synopsis"
+                onChange={(e) => setSynopsis(e.target.value)}
+              >
               </textarea>
             </p>
             <p className="text-center">
-              <button className="button-gold">SUBMIT</button>
+              <button type="submit" className="button-gold">
+                SUBMIT
+              </button>
             </p>
           </form>
         </main>

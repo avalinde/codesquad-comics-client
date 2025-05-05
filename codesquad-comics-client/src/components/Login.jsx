@@ -1,4 +1,20 @@
-function Login() {
+import { useState } from "react";
+
+function Login({ user, setUser }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login form submitted successfully. ");
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+  };
+
+  const currentUser = { email };
+  setUser(currentUser);
+  localStorage.setItem("user", JSON.stringify(currentUser));
+
   return (
     <div>
       Login
@@ -6,7 +22,7 @@ function Login() {
         <main>
           <h1>Login</h1>
 
-          <form className="formF">
+          <form className="formF" onSubmit={handleLoginSubmit}>
             <p className="formP">
               <label className="formL" for="Email1">
                 Email address:{" "}
@@ -18,6 +34,7 @@ function Login() {
                 id="Email1"
                 placeholder="Email"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
             </p>
 
@@ -32,10 +49,13 @@ function Login() {
                 id="Password1"
                 placeholder="Password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </p>
             <p className="textCenter">
-              <button className="buttonGold">SUBMIT</button>
+              <button type="submit" className="buttonGold">
+                SUBMIT
+              </button>
             </p>
           </form>
         </main>
