@@ -21,15 +21,15 @@ function App() {
   })
   return (
     <div>
-      {/* <Header user={user} setUser = {setUser} />
+      <Header user={user} setUser = {setUser} />
       <About />
-      <Admin />
+      <Admin /> 
       <Create />
-      <Home/> */}
+      <Home/> 
       <Login user={user} setUser={setUser}/>
       <Signup user={user} setUser = {setUser}/>
       <Update />
-      <Footer />
+      <Footer /> 
     </div>
   );
 }
