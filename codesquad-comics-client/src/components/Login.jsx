@@ -11,9 +11,6 @@ function Login({ user, setUser }) {
     console.log("Password: ", password);
   };
 
-  const currentUser = { email };
-  setUser(currentUser);
-  localStorage.setItem("user", JSON.stringify(currentUser));
 
   return (
     <div>
